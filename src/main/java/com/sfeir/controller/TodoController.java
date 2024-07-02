@@ -5,6 +5,8 @@ import com.sfeir.model.Todo;
 import com.sfeir.service.TodoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,28 +26,29 @@ public class TodoController {
     private final TodoService todoService;
 
     @GetMapping
-    public List<Todo> getAll() {
-        return todoService.getAll();
+    public ResponseEntity<List<Todo>> getAll() {
+        return ResponseEntity.ok(todoService.getAll());
     }
 
     @GetMapping("/{id}")
-    public Todo getById(@PathVariable("id") Long id) throws RuntimeException {
-        return todoService.getById(id);
+    public ResponseEntity<Todo> getById(@PathVariable("id") Long id) throws RuntimeException {
+        return ResponseEntity.ok(todoService.getById(id));
     }
 
     @PostMapping
-    public Todo add(@Valid @RequestBody Todo todoToAdd) {
-        return todoService.add(todoToAdd);
+    public ResponseEntity<Todo> add(@Valid @RequestBody Todo todoToAdd) {
+        return new ResponseEntity<>(todoService.add(todoToAdd), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public Todo update(@PathVariable("id") Long id,@Valid @RequestBody Todo todoToUpdate) {
-        return todoService.update(id, todoToUpdate);
+    public ResponseEntity<Todo> update(@PathVariable("id") Long id,@Valid @RequestBody Todo todoToUpdate) {
+        return ResponseEntity.ok(todoService.update(id, todoToUpdate));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         todoService.delete(id);
+        return ResponseEntity.ok().build();
     }
 
 }

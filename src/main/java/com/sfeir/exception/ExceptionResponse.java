@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,6 +16,7 @@ import lombok.Setter;
 public class ExceptionResponse {
 
     private String message;
+    private List<String> details;
     private String status;
 
 }

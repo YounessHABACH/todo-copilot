@@ -1,5 +1,6 @@
 package com.sfeir.service;
 
+import com.sfeir.exception.ResourceNotFoundException;
 import com.sfeir.model.Todo;
 import com.sfeir.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class TodoService {
     public Todo getById(Long id) {
         return todoRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException(String.format("Todo with id: %d not exist", id)));
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Todo with id: %d not exist", id)));
     }
 
     public Todo add(Todo todoToAdd) {
