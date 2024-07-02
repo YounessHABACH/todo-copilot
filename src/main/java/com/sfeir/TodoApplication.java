@@ -22,7 +22,7 @@ public class TodoApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
 		Stream.of(
 				new Pair<>("Java", "* this Todo for java to learn Spring Boot"),
 				new Pair<>("Angular", "* Angular and Typescript"),
