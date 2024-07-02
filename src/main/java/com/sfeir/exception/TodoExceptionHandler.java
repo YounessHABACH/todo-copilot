@@ -25,7 +25,7 @@ public class TodoExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ExceptionResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
         return new ResponseEntity<>(ExceptionResponse.builder()
-                .message(ex.getMessage())
+                .message("Validation for inputs")
                 .status("BAD_REQUEST")
                 .details(
                         ex.getBindingResult().getFieldErrors().stream().map(

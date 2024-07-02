@@ -1,6 +1,8 @@
 package com.sfeir.service;
 
+import com.sfeir.dto.TodoDto;
 import com.sfeir.exception.ResourceNotFoundException;
+import com.sfeir.mapper.TodoMapper;
 import com.sfeir.model.Todo;
 import com.sfeir.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,31 +15,46 @@ import java.util.List;
 public class TodoService {
     
     private final TodoRepository todoRepository;
+    private final TodoMapper todoMapper;
 
-    public List<Todo> getAll() {
-        return todoRepository.findAll();
+    public List<TodoDto> getAll() {
+        return todoRepository.findAll().stream().map(todoMapper::toDto).toList();
     }
 
-    public Todo getById(Long id) {
+    public TodoDto getById(Long id) {
+        return todoRepository
+                .findById(id)
+                .map(todoMapper::toDto)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Todo with id: %d not exist", id)));
+    }
+
+    private Todo getEntityById(Long id) {
         return todoRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Todo with id: %d not exist", id)));
     }
 
-    public Todo add(Todo todoToAdd) {
-        return todoRepository.save(todoToAdd);
+    public TodoDto add(TodoDto todoToAdd) {
+        Todo entity = todoMapper.toEntity(todoToAdd);
+        return todoMapper.toDto(todoRepository.save(entity));
     }
 
-    public Todo update(Long id, Todo todoToUpdate) {
-        Todo dbTodo = getById(id);
-        dbTodo.setTitle(todoToUpdate.getTitle());
-        dbTodo.setDescription(todoToUpdate.getDescription());
-        dbTodo.setStatus(todoToUpdate.getStatus());
-        return todoRepository.save(dbTodo);
+    public TodoDto updateGlobal(Long id, TodoDto newDto) {
+        Todo existingDto = getEntityById(id);
+        todoMapper.globalUpdate(existingDto, newDto);
+        return todoMapper.toDto(todoRepository.save(existingDto));
+    }
+
+    public TodoDto updatePart(Long id, TodoDto newPartDto) {
+        Todo existingDto = getEntityById(id);
+        todoMapper.partialUpdate(existingDto, newPartDto);
+        return todoMapper.toDto(todoRepository.save(existingDto));
     }
 
     public void delete(Long id) {
-        Todo dbTodo = getById(id);
+        Todo dbTodo = getEntityById(id);
         todoRepository.delete(dbTodo);
     }
+
+
 }
