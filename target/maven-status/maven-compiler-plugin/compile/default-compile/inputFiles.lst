@@ -1,0 +1,14 @@
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\controller\TodoController.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\dto\ErrorDto.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\dto\TodoDto.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\exception\ResourceNotFoundException.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\exception\TodoExceptionHandling.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\mapper\TodoMapper.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\model\Todo.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\model\TodoStatusEnum.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\repository\TodoRepository.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\service\TodoService.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\specification\SearchCriteria.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\specification\TodoSpecification.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\specification\TodoSpecificationBuilder.java
+C:\Users\youne\IdeaProjs\todo-copilot\src\main\java\sfeir\ynshb\TodoE2EApplication.java
